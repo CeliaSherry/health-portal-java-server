@@ -31,6 +31,14 @@ public class Customer extends User{
 		super.set(customer);
 		this.favoritedArticles = customer.favoritedArticles;
 	}
+	
+	public void favoriteArticle(Article article) {
+		this.favoritedArticles.add(article);
+		if(!article.getFavoritedCustomers()
+				.contains(this)) {
+			article.getFavoritedCustomers().add(this);
+		}
+	}
 
 
 	public List<Article> getFavoritedArticles() {

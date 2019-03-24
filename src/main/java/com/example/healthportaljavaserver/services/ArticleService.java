@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.healthportaljavaserver.model.Article;
+import com.example.healthportaljavaserver.model.Customer;
 import com.example.healthportaljavaserver.model.Provider;
 import com.example.healthportaljavaserver.model.User;
 import com.example.healthportaljavaserver.repositories.ArticleRepository;
+import com.example.healthportaljavaserver.repositories.CustomerRepository;
 
 @RestController
 //@CrossOrigin(origins="https://polar-dawn-38329.herokuapp.com", allowCredentials="true",allowedHeaders="*")
@@ -26,6 +28,8 @@ public class ArticleService {
 	
 	@Autowired
 	ArticleRepository articleRepository;
+	@Autowired 
+	CustomerRepository customerRepository;
 	
 	@PutMapping("/api/articles/{articleId}")
 	public Article updateArticle(
@@ -67,11 +71,26 @@ public class ArticleService {
 	public Article findArticleById(@PathVariable("articleId") Integer id) {
 		Article article;
 		try {
-			article = articleRepository.findArticleById(id).get(0);
+			article = articleRepository.findById(id).get();
 		} catch (Exception e) {
 			return null;
 		}
 		return article;
+	}
+	
+	@PostMapping("/api/articles/{articleId}/customer/{customerId}")
+	public void favoriteCustomer(
+			@PathVariable("articleId") Integer articleId, @PathVariable("customerId") Integer customerId) {
+		Article article = articleRepository.findById(articleId).get();
+		Customer customer = customerRepository.findById(customerId).get();
+		article.favoriteCustomer(customer);
+		articleRepository.save(article);
+	}
+	
+	@GetMapping("api/articles/{articleId}/customer")
+	public Iterable<Customer> findFavoritedCustomers(@PathVariable("articleId") Integer id) {
+		Article article = articleRepository.findArticleById(id).get(0);
+		return article.getFavoritedCustomers();
 	}
 	
 	

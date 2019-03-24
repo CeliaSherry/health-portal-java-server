@@ -58,6 +58,14 @@ public class Article {
 		this.date = article.date;
 		this.favoritedCustomers = article.favoritedCustomers;
 	}
+	
+	public void favoriteCustomer(Customer customer) {
+		this.favoritedCustomers.add(customer);
+		if(!customer.getFavoritedArticles()
+				.contains(this)) {
+			customer.getFavoritedArticles().add(this);
+		}
+	}
 
 	public Integer getId() {
 		return id;

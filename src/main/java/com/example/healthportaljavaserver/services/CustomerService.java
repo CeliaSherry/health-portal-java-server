@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.healthportaljavaserver.model.Article;
 import com.example.healthportaljavaserver.model.Customer;
+import com.example.healthportaljavaserver.repositories.ArticleRepository;
 import com.example.healthportaljavaserver.repositories.CustomerRepository;
 
 @RestController
@@ -22,6 +24,8 @@ public class CustomerService {
 
 	@Autowired
 	CustomerRepository customerRepository;
+	@Autowired 
+	ArticleRepository articleRepository;
 	
 	@GetMapping("/api/customers")
 	public List<Customer> findAllCustomers() {
@@ -61,6 +65,21 @@ public class CustomerService {
 		}
 		customer.set(newCustomer);
 		return customerRepository.save(customer);
+	}
+	
+	@PostMapping("/api/customer/{customerId}/article/{articleId}")
+	public void favoriteArticle(
+			@PathVariable("customerId") Integer customerId, @PathVariable("articleId") Integer articleId) {
+		Article article = articleRepository.findById(articleId).get();
+		Customer customer = customerRepository.findById(customerId).get();
+		customer.favoriteArticle(article);
+		customerRepository.save(customer);
+	}
+	
+	@GetMapping("api/customer/{customerId}/article")
+	public Iterable<Article> findFavoritedArticles(@PathVariable("customerId") Integer id) {
+		Customer customer = customerRepository.findCustomerById(id).get(0);
+		return customer.getFavoritedArticles();
 	}
 	
 	

@@ -1,6 +1,6 @@
 package com.example.healthportaljavaserver.model;
 import java.util.List;
-
+import com.example.healthportaljavaserver.model.Provider;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +20,17 @@ public class Article {
 	
 	@ManyToOne()
 	@JsonIgnore
-	private Provider author;
+	private Provider provider;
+	
+	public Provider getProvider() {
+		return provider;
+	}
+	
+	public void setProvider(Provider provider) {
+		this.provider = provider;
+	}
+	
+	
 	private String text;
 	private String date;
 	

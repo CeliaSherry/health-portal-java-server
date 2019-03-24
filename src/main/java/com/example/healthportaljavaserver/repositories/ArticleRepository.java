@@ -13,8 +13,8 @@ public interface ArticleRepository extends CrudRepository<Article, Integer> {
 	public List<Article> findArticleById
 	(@Param("id") Integer id);
 	
-	@Query("SELECT article from Article article WHERE article.owner=:username")
-	public List<Article> findAllArticlesForUser(@Param("username") String username);
+	@Query("SELECT article from Article article WHERE provider_id=:id")
+	public List<Article> findAllArticlesForProvider(@Param("id") Integer id);
 	
 	@Query("SELECT article from Article article")
 	public List<Article> findAllArticles();

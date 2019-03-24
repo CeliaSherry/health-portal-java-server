@@ -4,8 +4,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.*;
 import org.springframework.data.repository.query.Param;
-
-import com.example.healthportaljavaserver.model.Article;
 import com.example.healthportaljavaserver.model.Practice;
 
 public interface PracticeRepository extends CrudRepository<Practice, Integer> {

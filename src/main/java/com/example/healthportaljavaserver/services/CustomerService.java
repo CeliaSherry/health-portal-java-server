@@ -45,7 +45,7 @@ public class CustomerService {
 	}
 	
 	@PostMapping("/api/customers")
-	public Customer createUser(@RequestBody Customer customer) {
+	public Customer createCustomer(@RequestBody Customer customer) {
 	  		return customerRepository.save(customer);
 	}
 	

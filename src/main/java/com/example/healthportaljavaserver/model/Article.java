@@ -37,6 +37,19 @@ public class Article {
 	@ManyToMany(mappedBy="favoritedArticles")
 	@JsonIgnore 
 	private List<Customer> favoritedCustomers;
+	
+	public Article() {}
+
+	public Article(Integer id, String title, Provider provider, String text, String date,
+			List<Customer> favoritedCustomers) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.provider = provider;
+		this.text = text;
+		this.date = date;
+		this.favoritedCustomers = favoritedCustomers;
+	}
 
 	public Integer getId() {
 		return id;

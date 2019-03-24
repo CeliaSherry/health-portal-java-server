@@ -19,6 +19,17 @@ public class Customer extends User{
 	inverseJoinColumns=@JoinColumn(name="ARTICLE_ID", referencedColumnName="ID"))
 	@JsonIgnore
 	private List<Article> favoritedArticles = new ArrayList<>();
+	
+	public Customer() {}
+	
+	
+
+	public Customer(List<Article> favoritedArticles) {
+		super();
+		this.favoritedArticles = favoritedArticles;
+	}
+
+
 
 	public List<Article> getFavoritedArticles() {
 		return favoritedArticles;

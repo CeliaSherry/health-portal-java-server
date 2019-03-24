@@ -21,6 +21,26 @@ public class User {
 	private String city;
 	private String state;
 	private String email;
+	
+	public User() {}
+	
+	
+	
+	public User(Integer id, String username, String password, String firstName, String lastName, String city,
+			String state, String email) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.city = city;
+		this.state = state;
+		this.email = email;
+	}
+
+
+
 	public Integer getId() {
 		return id;
 	}

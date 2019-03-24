@@ -10,6 +10,17 @@ public class Provider extends User {
 	
 	@OneToMany(mappedBy="provider")
 	private List<Article> authoredArticles = new ArrayList<>();
+	
+	public Provider() {}
+
+	
+	
+	public Provider(List<Article> authoredArticles) {
+		super();
+		this.authoredArticles = authoredArticles;
+	}
+
+
 
 	public List<Article> getAuthoredArticles() {
 		return authoredArticles;

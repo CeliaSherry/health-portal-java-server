@@ -18,6 +18,23 @@ public class Practice {
 	private String state;
 	private Integer zipCode;
 	private String specialty;
+	
+	public Practice() {}
+	
+	public Practice(Integer id, String title, String address, String city, String state, Integer zipCode,
+			String specialty) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zipCode = zipCode;
+		this.specialty = specialty;
+	}
+
+
+
 	public Integer getId() {
 		return id;
 	}

@@ -32,6 +32,15 @@ public class Practice {
 		this.zipCode = zipCode;
 		this.specialty = specialty;
 	}
+	
+	public void set(Practice practice) {
+		this.title = practice.title;
+		this.address = practice.address;
+		this.city = practice.city;
+		this.state = practice.state;
+		this.zipCode = practice.zipCode;
+		this.specialty = practice.specialty;
+	}
 
 
 

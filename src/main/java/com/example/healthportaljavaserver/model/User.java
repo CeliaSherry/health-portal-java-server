@@ -25,7 +25,6 @@ public class User {
 	public User() {}
 	
 	
-	
 	public User(Integer id, String username, String password, String firstName, String lastName, String city,
 			String state, String email) {
 		super();
@@ -39,6 +38,15 @@ public class User {
 		this.email = email;
 	}
 
+	public void set(User user) {
+		this.username = user.username;
+		this.password = user.password;
+		this.firstName = user.firstName;
+		this.lastName = user.lastName;
+		this.city = user.city;
+		this.state = user.state;
+		this.email = user.email;
+	}
 
 
 	public Integer getId() {

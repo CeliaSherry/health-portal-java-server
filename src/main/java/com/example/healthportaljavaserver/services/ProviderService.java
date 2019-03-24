@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.healthportaljavaserver.model.Customer;
@@ -40,6 +43,25 @@ public class ProviderService {
 	@DeleteMapping("/api/providers/user/{userId}")
 	public void deleteProvider(@PathVariable("userId") Integer id) {
 	  providerRepository.deleteById(id);
+	}
+	
+	@PostMapping("/api/providers")
+	public Provider createUser(@RequestBody Provider provider) {
+	  		return providerRepository.save(provider);
+	}
+	
+	@PutMapping("/api/providers/user/{userId}")
+	public Provider updateProvider(
+			@PathVariable("userId") Integer id,
+			@RequestBody Provider newProvider) {
+		Provider provider;
+		try {
+			provider = providerRepository.findById(id).get();
+		} catch (Exception e) {
+			return null;
+		}
+		provider.set(newProvider);
+		return providerRepository.save(provider);
 	}
 
 }

@@ -21,6 +21,10 @@ public class Provider extends User {
 	}
 
 
+	public void set(Provider provider) {
+		super.set(provider);
+		this.authoredArticles = provider.authoredArticles;
+	}
 
 	public List<Article> getAuthoredArticles() {
 		return authoredArticles;

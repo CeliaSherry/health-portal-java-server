@@ -21,14 +21,16 @@ public class Customer extends User{
 	private List<Article> favoritedArticles = new ArrayList<>();
 	
 	public Customer() {}
-	
-	
 
 	public Customer(List<Article> favoritedArticles) {
 		super();
 		this.favoritedArticles = favoritedArticles;
 	}
 
+	public void set(Customer customer) {
+		super.set(customer);
+		this.favoritedArticles = customer.favoritedArticles;
+	}
 
 
 	public List<Article> getFavoritedArticles() {

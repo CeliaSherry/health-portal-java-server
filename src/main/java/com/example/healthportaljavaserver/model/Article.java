@@ -50,6 +50,14 @@ public class Article {
 		this.date = date;
 		this.favoritedCustomers = favoritedCustomers;
 	}
+	
+	public void set(Article article) {
+		this.title = article.title;
+		this.provider = article.provider;
+		this.text = article.text;
+		this.date = article.date;
+		this.favoritedCustomers = article.favoritedCustomers;
+	}
 
 	public Integer getId() {
 		return id;

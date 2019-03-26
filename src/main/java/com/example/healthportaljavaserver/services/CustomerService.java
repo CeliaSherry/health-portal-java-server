@@ -2,6 +2,8 @@ package com.example.healthportaljavaserver.services;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.healthportaljavaserver.model.Article;
 import com.example.healthportaljavaserver.model.Customer;
+import com.example.healthportaljavaserver.model.User;
 import com.example.healthportaljavaserver.repositories.ArticleRepository;
 import com.example.healthportaljavaserver.repositories.CustomerRepository;
 
@@ -51,6 +54,19 @@ public class CustomerService {
 	@PostMapping("/api/customers")
 	public Customer createCustomer(@RequestBody Customer customer) {
 	  		return customerRepository.save(customer);
+	}
+	
+	@PostMapping("/api/customers/register")
+	public Customer registerCustomer(@RequestBody Customer user, HttpSession session) {
+		boolean exists = false;
+		try {
+		Customer existingUser = customerRepository.findCustomerById(user.getId()).get(0);
+		} catch (Exception e) {
+			session.setAttribute("currentUser", user);
+			return customerRepository.save(user);
+		}
+			session.setAttribute("currentUser", user);
+			return user;
 	}
 	
 	@PutMapping("/api/customers/user/{userId}")

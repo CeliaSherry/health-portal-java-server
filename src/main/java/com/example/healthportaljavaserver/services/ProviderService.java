@@ -2,6 +2,8 @@ package com.example.healthportaljavaserver.services;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,6 +50,19 @@ public class ProviderService {
 	@PostMapping("/api/providers")
 	public Provider createUser(@RequestBody Provider provider) {
 	  		return providerRepository.save(provider);
+	}
+	
+	@PostMapping("/api/providers/register")
+	public Provider registerProvider(@RequestBody Provider user, HttpSession session) {
+		boolean exists = false;
+		try {
+		Provider existingUser = providerRepository.findById(user.getId()).get();
+		} catch (Exception e) {
+			session.setAttribute("currentUser", user);
+			return providerRepository.save(user);
+		}
+			session.setAttribute("currentUser", user);
+			return user;
 	}
 	
 	@PutMapping("/api/providers/user/{userId}")

@@ -79,15 +79,15 @@ public class PracticeService {
 		return practice;
 	}
 	
-	@GetMapping("/api/practiceId/{practiceId}/practice")
-	public Integer findIdByPractice(@PathVariable("practiceId") String id) {
+	
+	@GetMapping("/api/practiceId/{practiceId}/practice") public Integer
+	findIdByPractice(@PathVariable("practiceId") String id) { 
 		Integer practiceId;
-		try {
-			practiceId = practiceRepository.findIdByPracticeId(id);
-		} catch (Exception e) {
-			return null;
-		}
-		return practiceId;
-	}
+	  try { practiceId = practiceRepository.findIdByPracticeId(id); } 
+	  catch (Exception e) { 
+		  return null; } 
+	  return practiceId; 
+	  }
+	 
 	
 }

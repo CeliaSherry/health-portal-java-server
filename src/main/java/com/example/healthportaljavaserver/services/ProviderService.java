@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.healthportaljavaserver.model.Article;
 import com.example.healthportaljavaserver.model.Customer;
 import com.example.healthportaljavaserver.model.Provider;
 import com.example.healthportaljavaserver.repositories.ProviderRepository;
@@ -77,6 +78,11 @@ public class ProviderService {
 		}
 		provider.set(newProvider);
 		return providerRepository.save(provider);
+	}
+	
+	@GetMapping("/api/practice/{practiceId}")
+	public List<Provider> findAllProvidersForPractice(@PathVariable("practiceId") Integer id){
+		return providerRepository.findAllProvidersForPractice(id);
 	}
 
 }

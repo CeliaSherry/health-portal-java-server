@@ -1,9 +1,13 @@
 package com.example.healthportaljavaserver.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Practice {
@@ -18,11 +22,15 @@ public class Practice {
 	private String state;
 	private Integer zipCode;
 	private String specialty;
+	private String practiceId;
+	
+	@OneToMany(mappedBy="practice")
+	private List<Provider> providers = new ArrayList<>();
 	
 	public Practice() {}
 	
 	public Practice(Integer id, String title, String address, String city, String state, Integer zipCode,
-			String specialty) {
+			String specialty, List<Provider> providers, String practiceId) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -31,6 +39,8 @@ public class Practice {
 		this.state = state;
 		this.zipCode = zipCode;
 		this.specialty = specialty;
+		this.providers = providers;
+		this.practiceId = practiceId;
 	}
 	
 	public void set(Practice practice) {
@@ -40,6 +50,8 @@ public class Practice {
 		this.state = practice.state;
 		this.zipCode = practice.zipCode;
 		this.specialty = practice.specialty;
+		this.providers = practice.providers;
+		this.practiceId = practice.practiceId;
 	}
 
 
@@ -85,6 +97,22 @@ public class Practice {
 	}
 	public void setSpecialty(String specialty) {
 		this.specialty = specialty;
+	}
+	
+	public List<Provider> getProviders() {
+		return providers;
+	}
+
+	public void setProviders(List<Provider> providers) {
+		this.providers = providers;
+	}
+
+	public String getPracticeId() {
+		return practiceId;
+	}
+
+	public void setPracticeId(String practiceId) {
+		this.practiceId = practiceId;
 	}
 	
 	

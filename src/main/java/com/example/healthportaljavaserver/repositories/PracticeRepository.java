@@ -16,4 +16,12 @@ public interface PracticeRepository extends CrudRepository<Practice, Integer> {
 	@Query("SELECT practice from Practice practice")
 	public List<Practice> findAllPractices();
 	
+	@Query("SELECT practice FROM Practice practice WHERE practice.practice_id=:id")
+	public List<Practice> findPracticeByPracticeId
+	(@Param("id") String id);
+	
+	@Query("SELECT id FROM Practice practice WHERE practice.practice_id=:id")
+	public Integer findIdByPracticeId
+	(@Param("id") String id);
+	
 }

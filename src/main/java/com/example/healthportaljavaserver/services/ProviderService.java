@@ -80,7 +80,7 @@ public class ProviderService {
 		return providerRepository.save(provider);
 	}
 	
-	@GetMapping("/api/practice/{practiceId}")
+	@GetMapping("/api/practice/{practiceId}/provider")
 	public List<Provider> findAllProvidersForPractice(@PathVariable("practiceId") Integer id){
 		return providerRepository.findAllProvidersForPractice(id);
 	}

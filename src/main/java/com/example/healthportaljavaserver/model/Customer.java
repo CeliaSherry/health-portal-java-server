@@ -29,7 +29,7 @@ public class Customer extends User{
 
 	public void set(Customer customer) {
 		super.set(customer);
-		this.favoritedArticles = customer.favoritedArticles;
+		//this.favoritedArticles = customer.favoritedArticles;
 	}
 	
 	public void favoriteArticle(Article article) {
@@ -47,6 +47,11 @@ public class Customer extends User{
 
 	public void setFavoritedArticles(List<Article> favoritedArticles) {
 		this.favoritedArticles = favoritedArticles;
+	}
+	
+	@Override
+	public String getRole() {
+		return "CUS";
 	}
 	
 	//@OneToMany

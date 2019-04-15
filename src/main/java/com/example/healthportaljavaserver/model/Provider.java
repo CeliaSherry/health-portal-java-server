@@ -37,8 +37,8 @@ public class Provider extends User {
 
 	public void set(Provider provider) {
 		super.set(provider);
-		this.authoredArticles = provider.authoredArticles;
-		this.practice = provider.practice;
+	//	this.authoredArticles = provider.authoredArticles;
+	//	this.practice = provider.practice;
 	}
 
 	public List<Article> getAuthoredArticles() {
@@ -47,6 +47,11 @@ public class Provider extends User {
 
 	public void setAuthoredArticles(List<Article> authoredArticles) {
 		this.authoredArticles = authoredArticles;
+	}
+	
+	@Override
+	public String getRole() {
+		return "PRO";
 	}
 	
 	

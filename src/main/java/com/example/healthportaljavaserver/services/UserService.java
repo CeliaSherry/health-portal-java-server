@@ -57,6 +57,7 @@ public class UserService {
 		return (User)session.getAttribute("currentUser");
 	}
 	
+	
 	@PostMapping("/api/loggedin")
 	public Boolean loggedin(HttpSession session) {
 		User test = null;
@@ -92,6 +93,14 @@ public class UserService {
 	public User findUserById
 	(@PathVariable("userId") Integer id) {
 	  return userRepository.findById(id).get();
+	}
+	
+	@GetMapping("/api/role/{userId}")
+	public String findRoleByUserId
+	(@PathVariable("userId") Integer id) {
+	  User temp = userRepository.findById(id).get();
+	  String role = temp.getRole();
+	  return role;
 	}
 
 	

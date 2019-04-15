@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.healthportaljavaserver.model.User;
+import com.example.healthportaljavaserver.repositories.CustomerRepository;
+import com.example.healthportaljavaserver.repositories.ProviderRepository;
 import com.example.healthportaljavaserver.repositories.UserRepository;
 
 @RestController
@@ -50,9 +52,24 @@ public class UserService {
 			return user;
 	}
 	
-	@PostMapping("/api/loggedin")
-	public User loggedin(HttpSession session) {
+	@PostMapping("/api/loggedinuser")
+	public User loggedinUser(HttpSession session) {
 		return (User)session.getAttribute("currentUser");
+	}
+	
+	@PostMapping("/api/loggedin")
+	public Boolean loggedin(HttpSession session) {
+		User test = null;
+		try {
+			test = (User)session.getAttribute("currentUser");
+		} catch (Exception e) {
+			return false;
+		}
+		if(test == null) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 	@PostMapping("/api/logout")

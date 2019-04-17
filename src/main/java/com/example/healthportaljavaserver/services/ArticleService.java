@@ -20,6 +20,7 @@ import com.example.healthportaljavaserver.model.Provider;
 import com.example.healthportaljavaserver.model.User;
 import com.example.healthportaljavaserver.repositories.ArticleRepository;
 import com.example.healthportaljavaserver.repositories.CustomerRepository;
+import com.example.healthportaljavaserver.repositories.ProviderRepository;
 
 @RestController
 //@CrossOrigin(origins="https://polar-dawn-38329.herokuapp.com", allowCredentials="true",allowedHeaders="*")
@@ -30,6 +31,8 @@ public class ArticleService {
 	ArticleRepository articleRepository;
 	@Autowired 
 	CustomerRepository customerRepository;
+	@Autowired 
+	ProviderRepository providerRepository;
 	
 	@PutMapping("/api/articles/{articleId}")
 	public Article updateArticle(
@@ -50,11 +53,19 @@ public class ArticleService {
 	  articleRepository.deleteById(id);
 	}
 	
-	@PostMapping("/api/articles")
+	/*@PostMapping("/api/articles")
 	public Article createArticle(@RequestBody Article article, HttpSession session) {
 		Provider loggedInUser = (Provider)session.getAttribute("currentUser");
 		article.setProvider(loggedInUser);
 	  	return articleRepository.save(article);	
+	}*/
+	
+	@PostMapping("/api/provider/{providerId}/articles")
+	public Article favoriteArticle(
+			@PathVariable("providerId") Integer providerId, @RequestBody Article article) {
+		Provider provider = providerRepository.findById(providerId).get();
+		article.setProvider(provider);
+		return articleRepository.save(article);
 	}
 	
 	@GetMapping("/api/articles")

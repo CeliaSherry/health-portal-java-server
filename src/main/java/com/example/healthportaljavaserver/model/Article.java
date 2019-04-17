@@ -53,10 +53,10 @@ public class Article {
 	
 	public void set(Article article) {
 		this.title = article.title;
-		this.provider = article.provider;
+		//this.provider = article.provider;
 		this.text = article.text;
 		this.date = article.date;
-		this.favoritedCustomers = article.favoritedCustomers;
+		//this.favoritedCustomers = article.favoritedCustomers;
 	}
 	
 	public void favoriteCustomer(Customer customer) {

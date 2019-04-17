@@ -61,7 +61,7 @@ public class ArticleService {
 	}*/
 	
 	@PostMapping("/api/provider/{providerId}/articles")
-	public Article favoriteArticle(
+	public Article createArticle(
 			@PathVariable("providerId") Integer providerId, @RequestBody Article article) {
 		Provider provider = providerRepository.findById(providerId).get();
 		article.setProvider(provider);

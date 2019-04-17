@@ -73,6 +73,19 @@ public class ArticleService {
 		return articleRepository.findAllArticles();
 	}
 	
+	@GetMapping("/api/articles/{articleId}/provider")
+	public Provider findAuthor(@PathVariable("articleId") Integer articleId) {
+		Article article;
+		Provider provider;
+		try {
+			article = articleRepository.findById(articleId).get();
+			provider = article.getProvider();
+		} catch (Exception e) {
+			return null;
+		}
+		return provider;
+	}
+	
 	@GetMapping("/api/articles/provider/{providerId}")
 	public List<Article> findAllArticlesForProvider(@PathVariable("providerId") Integer id){
 		return articleRepository.findAllArticlesForProvider(id);

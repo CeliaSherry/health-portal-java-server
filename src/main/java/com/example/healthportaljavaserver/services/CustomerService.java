@@ -21,7 +21,7 @@ import com.example.healthportaljavaserver.repositories.ArticleRepository;
 import com.example.healthportaljavaserver.repositories.CustomerRepository;
 
 @RestController
-@CrossOrigin(origins="https://cs5610-csherry-healthportal.herokuapp.com/", allowCredentials="true",allowedHeaders="*")
+@CrossOrigin(origins="https://cs5610-csherry-healthportal.herokuapp.com", allowCredentials="true",allowedHeaders="*")
 //@CrossOrigin(origins="http://localhost:3000", allowCredentials="true",allowedHeaders="*")
 public class CustomerService {
 

@@ -117,9 +117,10 @@ public class UserService {
 
 	
 	@PutMapping("/api/user/{userId}")
-	public User updateUser(@PathVariable("userId") Integer id, @RequestBody User newUser) {
+	public User updateUser(@PathVariable("userId") Integer id, @RequestBody User newUser, HttpSession session) {
 	User user = userRepository.findById(id).get();
 	user.set(newUser); 
+	session.setAttribute("currentUser", newUser);
 	return userRepository.save(user);
 	}
 

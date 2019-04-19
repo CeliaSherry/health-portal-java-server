@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.healthportaljavaserver.model.Article;
 import com.example.healthportaljavaserver.model.Customer;
+import com.example.healthportaljavaserver.model.Provider;
 
 public interface CustomerRepository extends CrudRepository<Customer, Integer>{
 
@@ -20,6 +21,9 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer>{
 	
 	@Query("SELECT customer from Customer customer WHERE customer.username=:username AND customer.password=:password")
 	public List<Customer> findCustomerByCredentials(@Param("username") String username, @Param("password") String password);
+	
+	@Query("SELECT provider FROM Customer customer WHERE customer.id=:id")
+	public Provider findProvider (@Param("id") Integer id);
 
 	
 }

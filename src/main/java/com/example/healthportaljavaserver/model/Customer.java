@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -20,11 +21,29 @@ public class Customer extends User{
 	@JsonIgnore
 	private List<Article> favoritedArticles = new ArrayList<>();
 	
+	
+	@ManyToOne()
+	@JsonIgnore
+	private Provider provider;
+	
+	public Provider getProvider() {
+		return provider;
+	}
+	
+	public void setProvider(Provider provider) {
+		this.provider = provider;
+	}
+	
+	public void removeProvider() {
+		this.provider = null;
+	}
+	
 	public Customer() {}
 
-	public Customer(List<Article> favoritedArticles) {
+	public Customer(List<Article> favoritedArticles, Provider provider) {
 		super();
 		this.favoritedArticles = favoritedArticles;
+		this.provider = provider;
 	}
 
 	public void set(Customer customer) {

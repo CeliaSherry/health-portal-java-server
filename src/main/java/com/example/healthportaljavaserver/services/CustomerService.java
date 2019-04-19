@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.healthportaljavaserver.model.Article;
 import com.example.healthportaljavaserver.model.Customer;
+import com.example.healthportaljavaserver.model.Provider;
 import com.example.healthportaljavaserver.model.User;
 import com.example.healthportaljavaserver.repositories.ArticleRepository;
 import com.example.healthportaljavaserver.repositories.CustomerRepository;
+import com.example.healthportaljavaserver.repositories.ProviderRepository;
 
 @RestController
 //@CrossOrigin(origins="https://cs5610-csherry-healthportal.herokuapp.com", allowCredentials="true",allowedHeaders="*")
@@ -29,6 +31,8 @@ public class CustomerService {
 	CustomerRepository customerRepository;
 	@Autowired 
 	ArticleRepository articleRepository;
+	@Autowired
+	ProviderRepository providerRepository;
 	
 	@GetMapping("/api/customers")
 	public List<Customer> findAllCustomers() {
@@ -89,6 +93,26 @@ public class CustomerService {
 		Article article = articleRepository.findById(articleId).get();
 		Customer customer = customerRepository.findById(customerId).get();
 		customer.favoriteArticle(article);
+		customerRepository.save(customer);
+	}
+	
+	@GetMapping("/api/customer/{customerId}/provider")
+	public Provider findProvider(@PathVariable("customerId") Integer customerId) {
+		return customerRepository.findProvider(customerId);
+	}
+	
+	@PostMapping("api/customer/{customerId}/provider/{providerId}")
+	public void saveProvider(@PathVariable("customerId") Integer customerId, @PathVariable("providerId") Integer providerId) {
+		Customer customer = customerRepository.findById(customerId).get();
+		Provider provider = providerRepository.findById(providerId).get();
+		customer.setProvider(provider);
+		customerRepository.save(customer);
+	}
+	
+	@DeleteMapping("api/customer/{customerId}/provider")
+	public void unsaveProvider(@PathVariable("customerId") Integer customerId) {
+		Customer customer = customerRepository.findById(customerId).get();
+		customer.removeProvider();
 		customerRepository.save(customer);
 	}
 	

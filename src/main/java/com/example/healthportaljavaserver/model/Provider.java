@@ -26,6 +26,9 @@ public class Provider extends User {
 		this.practice = practice;
 	}
 	
+	@OneToMany(mappedBy="provider")
+	private List<Customer> customers = new ArrayList<>();
+	
 	public Provider() {}
 
 	public Provider(List<Article> authoredArticles, Practice practice) {
@@ -52,6 +55,14 @@ public class Provider extends User {
 	@Override
 	public String getRole() {
 		return "PRO";
+	}
+
+	public List<Customer> getCustomers() {
+		return customers;
+	}
+
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
 	}
 	
 	

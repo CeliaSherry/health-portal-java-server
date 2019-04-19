@@ -39,8 +39,14 @@ public class Customer extends User{
 			article.getFavoritedCustomers().add(this);
 		}
 	}
-
-
+	
+	public void unfavoriteArticle(Article article) {
+		this.favoritedArticles.remove(article);
+		if(article.getFavoritedCustomers().contains(this)) {
+			article.getFavoritedCustomers().remove(this);
+		}
+	}
+	
 	public List<Article> getFavoritedArticles() {
 		return favoritedArticles;
 	}

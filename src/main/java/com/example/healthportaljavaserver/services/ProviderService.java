@@ -20,8 +20,8 @@ import com.example.healthportaljavaserver.model.Provider;
 import com.example.healthportaljavaserver.repositories.ProviderRepository;
 
 @RestController
-@CrossOrigin(origins="https://cs5610-csherry-healthportal.herokuapp.com", allowCredentials="true",allowedHeaders="*")
-//@CrossOrigin(origins="http://localhost:3000", allowCredentials="true",allowedHeaders="*")
+//@CrossOrigin(origins="https://cs5610-csherry-healthportal.herokuapp.com", allowCredentials="true",allowedHeaders="*")
+@CrossOrigin(origins="http://localhost:3000", allowCredentials="true",allowedHeaders="*")
 public class ProviderService {
 	
 	@Autowired

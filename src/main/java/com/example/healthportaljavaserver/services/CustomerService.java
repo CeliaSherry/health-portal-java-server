@@ -21,8 +21,8 @@ import com.example.healthportaljavaserver.repositories.ArticleRepository;
 import com.example.healthportaljavaserver.repositories.CustomerRepository;
 
 @RestController
-@CrossOrigin(origins="https://cs5610-csherry-healthportal.herokuapp.com", allowCredentials="true",allowedHeaders="*")
-//@CrossOrigin(origins="http://localhost:3000", allowCredentials="true",allowedHeaders="*")
+//@CrossOrigin(origins="https://cs5610-csherry-healthportal.herokuapp.com", allowCredentials="true",allowedHeaders="*")
+@CrossOrigin(origins="http://localhost:3000", allowCredentials="true",allowedHeaders="*")
 public class CustomerService {
 
 	@Autowired
@@ -91,6 +91,15 @@ public class CustomerService {
 		customer.favoriteArticle(article);
 		customerRepository.save(customer);
 	}
+	
+	@DeleteMapping("/api/customer/{customerId}/article/{articleId}")
+	public void deleteArticleFavorite(@PathVariable("customerId") Integer customerId, @PathVariable("articleId") Integer articleId) {
+		Article article = articleRepository.findById(articleId).get();
+		Customer customer = customerRepository.findById(customerId).get();
+		customer.unfavoriteArticle(article);
+		customerRepository.save(customer);
+	}
+	
 	
 	@GetMapping("api/customer/{customerId}/article")
 	public Iterable<Article> findFavoritedArticles(@PathVariable("customerId") Integer id) {

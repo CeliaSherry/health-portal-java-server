@@ -9,7 +9,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-// Change for github app practice
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
